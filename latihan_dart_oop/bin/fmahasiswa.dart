@@ -1,12 +1,12 @@
 class Mahasiswa {
-  String? _nama;
-  String? _nrp;
-  int _sks = 0;
-  String? _status;
-  int _jumlahSKS = 0;
+  String? nama;
+  String? nrp;
+  int sks = 0;
+  String? status;
+  int jumlahSKS = 0;
   double ips = 0;
   double ipk = 0;
 
-  Mahasiswa(this._nama, this._nrp, this._sks, this._status, this._jumlahSKS,
+  Mahasiswa(this.nama, this.nrp, this.sks, this.status, this.jumlahSKS,
       this.ips, this.ipk);
 }
