@@ -9,6 +9,7 @@ void main() {
   var listMahasiswa = [Mahasiswa('nama', 'nrp', 0, 'status', 0, 0.00, 0.00)];
   var listDosen = [Dosen('_nama', 0, 0, 0, '_kategori', 0)];
   var listStaff = [Staff('_nama', 0, 12, 0, 0)];
+  var mahasiswa1 = Mahasiswa(' ', ' ', 0, ' ', 0, 0, 0);
 
   do {
     print("Select a role: ");
@@ -30,7 +31,31 @@ void main() {
       String? dtInput2 = stdin.readLineSync();
       menu = int.parse(dtInput2!);
       if (menu == 1) {
-        var mahasiswa1 = Mahasiswa(' ', ' ', 0, ' ', 0, 0, 0);
+        var dataMahasiswa = ['Coba', 'C121234', 24, 'Aktif', 83, 2.45, 2.43];
+        print(" ");
+        stdout.write('Nama: ');
+        mahasiswa1.nama = stdin.readLineSync();
+        stdout.write('NRP: ');
+        mahasiswa1.nrp = stdin.readLineSync();
+        stdout.write('SKS yang diambil: ');
+        String? inputSKS = stdin.readLineSync();
+        mahasiswa1.sks = int.parse(inputSKS!);
+        if (mahasiswa1.sks > 24) {
+          print("Maksimal 24 SKS!");
+        }
+        stdout.write('Status Mahasiswa: ');
+        mahasiswa1.status = stdin.readLineSync();
+        stdout.write('Jumlah SKS yang sudah lulus: ');
+        String? inputJumlahSKS = stdin.readLineSync();
+        mahasiswa1.jumlahSKS = int.parse(inputJumlahSKS!);
+        stdout.write('IPS: ');
+        String? inputIPS = stdin.readLineSync();
+        mahasiswa1.ips = double.parse(inputIPS!);
+        stdout.write('IPK: ');
+        String? inputIPK = stdin.readLineSync();
+        mahasiswa1.ipk = double.parse(inputIPK!);
+        print(" ");
+      } else if (menu == 2) {
         var dataMahasiswa = ['Coba', 'C121234', 23, 'Aktif', 83, 2.45, 2.43];
         print(" ");
         print('Nama: ${mahasiswa1.nama}');
@@ -41,7 +66,7 @@ void main() {
         print('IPS: ${mahasiswa1.ips}');
         print('IPK: ${mahasiswa1.ipk}');
         print(" ");
-      } else if (menu == 2) {}
+      }
     } else if (pilihan == 2) {
       print(" ");
       print("Silahkan pilih menu: ");
