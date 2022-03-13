@@ -6,10 +6,12 @@ import 'fstaff.dart';
 void main() {
   int pilihan = 0;
   int menu = 0;
+  int jenisDosen = 0;
   var listMahasiswa = [Mahasiswa('nama', 'nrp', 0, 'status', 0, 0.00, 0.00)];
   var listDosen = [Dosen('_nama', 0, 0, 0, '_kategori', 0)];
   var listStaff = [Staff('_nama', 0, 12, 0, 0)];
   var mahasiswa1 = Mahasiswa(' ', ' ', 0, ' ', 0, 0, 0);
+  var staff1 = Staff('', 0, 12, 0, 0);
 
   do {
     print("Select a role: ");
@@ -42,9 +44,12 @@ void main() {
         mahasiswa1.sks = int.parse(inputSKS!);
         if (mahasiswa1.sks > 24) {
           print("Maksimal 24 SKS!");
+          stdout.write('SKS yang diambil: ');
+          String? inputSKS = stdin.readLineSync();
+          mahasiswa1.sks = int.parse(inputSKS!);
         }
-        stdout.write('Status Mahasiswa: ');
-        mahasiswa1.status = stdin.readLineSync();
+
+        // mahasiswa1.status = stdin.readLineSync();
         stdout.write('Jumlah SKS yang sudah lulus: ');
         String? inputJumlahSKS = stdin.readLineSync();
         mahasiswa1.jumlahSKS = int.parse(inputJumlahSKS!);
@@ -61,7 +66,13 @@ void main() {
         print('Nama: ${mahasiswa1.nama}');
         print('NRP: ${mahasiswa1.nrp}');
         print('SKS yang diambil: ${mahasiswa1.sks}');
-        print('Status Mahasiswa: ${mahasiswa1.status}');
+        // print('Status Mahasiswa: ${mahasiswa1.status}');
+        stdout.write('Status Mahasiswa: ');
+        if (mahasiswa1.sks != 0) {
+          print("Aktif");
+        } else {
+          print("Cuti");
+        }
         print('Jumlah SKS yang sudah lulus: ${mahasiswa1.jumlahSKS}');
         print('IPS: ${mahasiswa1.ips}');
         print('IPK: ${mahasiswa1.ipk}');
@@ -77,6 +88,17 @@ void main() {
       String? dtInput2 = stdin.readLineSync();
       menu = int.parse(dtInput2!);
       if (menu == 1) {
+        print("Pilih jenis dosen: ");
+        print("1. Dosen LB");
+        print("2. Dosen Tamu");
+        print("3. Dosen Tetap");
+        stdout.write(
+            "Pilih salah satu menu dengan mengetikkan angka pada menu: ");
+        String? dtInput3 = stdin.readLineSync();
+        jenisDosen = int.parse(dtInput3!);
+        if (jenisDosen == 1) {
+        } else if (jenisDosen == 2) {
+        } else if (jenisDosen == 3) {}
       } else if (menu == 2) {}
     } else if (pilihan == 3) {
       print(" ");
@@ -88,6 +110,10 @@ void main() {
       String? dtInput2 = stdin.readLineSync();
       menu = int.parse(dtInput2!);
       if (menu == 1) {
+        print(" ");
+        stdout.write('Nama: ');
+        staff1.nama = stdin.readLineSync();
+        stdout.write('Jumlah kehadiran (per bulan): ');
       } else if (menu == 2) {}
     }
   } while (pilihan != 0);
