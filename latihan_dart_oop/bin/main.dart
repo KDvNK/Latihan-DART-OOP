@@ -7,11 +7,21 @@ void main() {
   int pilihan = 0;
   int menu = 0;
   int jenisDosen = 0;
-  var listMahasiswa = [Mahasiswa('nama', 'nrp', 0, 'status', 0, 0.00, 0.00)];
+  // var listMahasiswa = [Mahasiswa('nama', 'nrp', 0, 'status', 0, 0.00, 0.00)];
   var listDosen = [Dosen('_nama', 0, 0, 0, '_kategori', 0)];
-  var listStaff = [Staff('_nama', 0, 12, 0, 0)];
+  var listStaff = [Staff('_nama', 0, 0, 12, 0, 0)];
   var mahasiswa1 = Mahasiswa(' ', ' ', 0, ' ', 0, 0, 0);
-  var staff1 = Staff('', 0, 12, 0, 0);
+  var staff1 = Staff('', 0, 100000, 12, 0, 1500000);
+  int cuti = 0;
+  var listMahasiswa = [
+    mahasiswa1.nama,
+    mahasiswa1.nrp,
+    mahasiswa1.sks,
+    mahasiswa1.status,
+    mahasiswa1.jumlahSKS,
+    mahasiswa1.ips,
+    mahasiswa1.ipk
+  ];
 
   do {
     print("Select a role: ");
@@ -33,7 +43,7 @@ void main() {
       String? dtInput2 = stdin.readLineSync();
       menu = int.parse(dtInput2!);
       if (menu == 1) {
-        var dataMahasiswa = ['Coba', 'C121234', 24, 'Aktif', 83, 2.45, 2.43];
+        // var dataMahasiswa = ['Coba', 'C121234', 24, 'Aktif', 83, 2.45, 2.43];
         print(" ");
         stdout.write('Nama: ');
         mahasiswa1.nama = stdin.readLineSync();
@@ -42,7 +52,7 @@ void main() {
         stdout.write('SKS yang diambil: ');
         String? inputSKS = stdin.readLineSync();
         mahasiswa1.sks = int.parse(inputSKS!);
-        if (mahasiswa1.sks > 24) {
+        while (mahasiswa1.sks > 24) {
           print("Maksimal 24 SKS!");
           stdout.write('SKS yang diambil: ');
           String? inputSKS = stdin.readLineSync();
@@ -61,7 +71,7 @@ void main() {
         mahasiswa1.ipk = double.parse(inputIPK!);
         print(" ");
       } else if (menu == 2) {
-        var dataMahasiswa = ['Coba', 'C121234', 23, 'Aktif', 83, 2.45, 2.43];
+        // var dataMahasiswa = ['Coba', 'C121234', 23, 'Aktif', 83, 2.45, 2.43];
         print(" ");
         print('Nama: ${mahasiswa1.nama}');
         print('NRP: ${mahasiswa1.nrp}');
@@ -77,6 +87,14 @@ void main() {
         print('IPS: ${mahasiswa1.ips}');
         print('IPK: ${mahasiswa1.ipk}');
         print(" ");
+        // listMahasiswa.add(Mahasiswa(
+        //     mahasiswa1.nama,
+        //     mahasiswa1.nrp,
+        //     mahasiswa1.sks,
+        //     mahasiswa1.status,
+        //     mahasiswa1.jumlahSKS,
+        //     mahasiswa1.ips,
+        //     mahasiswa1.ipk));
       }
     } else if (pilihan == 2) {
       print(" ");
@@ -113,8 +131,30 @@ void main() {
         print(" ");
         stdout.write('Nama: ');
         staff1.nama = stdin.readLineSync();
-        stdout.write('Jumlah kehadiran (per bulan): ');
-      } else if (menu == 2) {}
+        stdout.write('Jumlah kehadiran (dalam sebulan): ');
+        String? inputKehadiran = stdin.readLineSync();
+        staff1.kehadiran = int.parse(inputKehadiran!);
+        stdout.write('Ajukan cuti? (Y/N) ');
+        if (stdin.readLineSync() == "Y") {
+          stdout.write('Berapa hari cuti? (dalam hari) ');
+          String? ajukanCuti = stdin.readLineSync();
+          cuti = int.parse(ajukanCuti!);
+        } else if (stdin.readLineSync() == "N") {
+          cuti;
+        }
+      } else if (menu == 2) {
+        print(" ");
+        print('Nama: ${staff1.nama}');
+        print(
+            'Tunjangan Kehadiran: ${staff1.kehadiran * staff1.tunjanganKehadiran}');
+        print('Jatah Cuti: ${staff1.jatahCuti - cuti} hari');
+        staff1.totalGaji =
+            staff1.kehadiran * staff1.tunjanganKehadiran + staff1.gajiDasar;
+        print('Total gaji yang didapatkan: ${staff1.totalGaji}');
+        print("Objective: ");
+        staff1.absensi();
+        print(" ");
+      }
     }
   } while (pilihan != 0);
 }
