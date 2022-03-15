@@ -1,11 +1,11 @@
 mixin Absensi {
   void absensi() {
-    print('absensi');
+    print('Absensi');
   }
 }
 
 mixin Mengajar {
   void mengajar() {
-    print('mengajar');
+    print('Mengajar');
   }
 }
